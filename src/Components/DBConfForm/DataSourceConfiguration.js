@@ -5,30 +5,43 @@ import RDBMSConf from "./RDBMSConf";
 
 function DataSourceConfiguration() {
 
-    const { conf,dispatch } = useContext(DataSourceContext);
+    const { conf,dispatch, } = useContext(DataSourceContext);
 
     const [dbConf,setDbConf]=useState()
 
     const rdbms = ["MySql", "PostGreSql", "Oracle"];
     const aws_s3 = "AWS S3 Bucket";
 
+
+
     const onSourceChange = (e) => {
+
         const val = e.target.value;
-        if (rdbms.includes(val)) setDbConf(<RDBMSConf />)
-        else if (val === aws_s3) setDbConf(<AWS_S3 />)
+        if (rdbms.includes(val)) {
+            dispatch({
+                type: "DB_TYPE_CHANGE"
+            })
+            setDbConf(<RDBMSConf />)
+        }
+        else if (val === aws_s3) {
+            dispatch({
+                type: "DB_TYPE_CHANGE",
+            });
+            setDbConf(<AWS_S3 />)
+        }
         else setDbConf('')
 
         dispatch({
             type: "ADD_DBTYPE_NAME",
-            payload: e.target.value
-        });
-    };
+            payload: val
+        })
+    }
 
 
 
     return (
         <>
-            {console.log(conf)}
+            {/* {console.log(conf)} */}
             <h4>Database Configuration</h4>
             <hr />
             <div className="container">

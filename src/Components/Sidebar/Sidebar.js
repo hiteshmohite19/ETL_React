@@ -10,7 +10,7 @@ function Sidebar() {
                   <Link to="/">Dashboard</Link>
               </li>
               <li>
-                  <Link to="/data-source">Data Source</Link>
+                  <Link to="/table-configuration">Table Configuration</Link>
               </li>
           </ul>
       </div>
